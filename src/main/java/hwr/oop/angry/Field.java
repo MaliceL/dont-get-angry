@@ -7,8 +7,9 @@ public class Field {
     String occupier;
     String fieldType;
 
-    public Field() {
-
+    public Field(int position,String type) {
+        this.position = position;
+        this.fieldType = type;
     }
 
     public void getType(int position) {
@@ -21,6 +22,10 @@ public class Field {
 
     public void markNotOccupied() {
         this.occupied = false;
+    }
+
+    public void setOccupier(String occupier) {
+        this.occupier = occupier;
     }
 
     public void getOccupier() {
