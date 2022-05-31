@@ -28,7 +28,5 @@ public class Field {
         this.occupier = occupier;
     }
 
-    public void getOccupier() {
-
-    }
+    public String getOccupier() { return this.occupier; }
 }
