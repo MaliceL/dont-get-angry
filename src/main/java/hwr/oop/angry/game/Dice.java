@@ -1,4 +1,4 @@
-package hwr.oop.angry;
+package hwr.oop.angry.game;
 
 public class Dice {
 
