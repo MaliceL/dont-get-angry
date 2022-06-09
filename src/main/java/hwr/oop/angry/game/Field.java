@@ -3,29 +3,29 @@ package hwr.oop.angry.game;
 public class Field {
 
     int position;
-    boolean occupied;
-    String occupier;
-    String fieldType;
+    Field occupier;
+    //String fieldType;
 
-    public Field(int position,String type) {
+    public Field(int position) {
         this.position = position;
-        this.fieldType = type;
+        //this.fieldType = type;
     }
 
-    public void markOccupied() {
-        this.occupied = true;
+    public boolean isOccupied() {
+        if (this.occupier == null) {
+            return false;
+        }
+        return true;
     }
 
-    public void markNotOccupied() {
-        this.occupied = false;
-    }
-
-    public void setOccupier(String occupier) {
+    public void setOccupier(Field occupier) {
         this.occupier = occupier;
     }
 
-    public String getOccupier() { return this.occupier; }
+    public Field getOccupier() { return this.occupier; }
 
-    public String getType() { return this.fieldType; }
+    public int getPosition() { return this.position; }
+
+    //public String getType() { return this.fieldType; }
 }
 
