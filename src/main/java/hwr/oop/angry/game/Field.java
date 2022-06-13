@@ -4,11 +4,9 @@ public class Field {
 
     int position;
     Field occupier;
-    //String fieldType;
 
     public Field(int position) {
         this.position = position;
-        //this.fieldType = type;
     }
 
     public boolean isOccupied() {
@@ -22,10 +20,10 @@ public class Field {
         this.occupier = occupier;
     }
 
+    public void removeOccupier() { this.occupier = null; }
+
     public Field getOccupier() { return this.occupier; }
 
     public int getPosition() { return this.position; }
-
-    //public String getType() { return this.fieldType; }
 }
 

@@ -3,22 +3,24 @@ package hwr.oop.angry.game;
 public class Figure {
 
     int position;
-    boolean onBoard;
-    String name;
-    String team;
+    int startpos;
+    int houseentrance;
+    int firsthouse;
+    int teamid;
 
-    public Figure(int number, String team) {
-        this.team = team;
-        this.name = team.substring(0, 1) + number;
-        this.markOffBoard();
+    public Figure(int startpos, int houseentrance, int firsthouse, int teamid) {
+        this.position = 100;
+        this.startpos = startpos;
+        this.houseentrance = houseentrance;
+        this.firsthouse = firsthouse;
+        this.teamid = teamid;
     }
 
-    public void markOnBoard() {
-        this.onBoard = true;
-    }
-
-    public void markOffBoard() {
-        this.onBoard = false;
+    public boolean isOnField() {
+        if (this.position == 100) {
+            return false;
+        }
+        return true;
     }
 
     public void setPosition(int position) {
@@ -29,24 +31,28 @@ public class Figure {
         return position;
     }
 
-    public void setOnStart() {
-        switch (team) {
-            case "blue":
-                this.setPosition(1);
-                break;
-            case "red":
-                this.setPosition(11);
-                break;
-            case "green":
-                this.setPosition(21);
-                break;
-            case "yellow":
-                this.setPosition(31);
-                break;
+    public void moveFigure(int dice) {
+        if (this.position <= this.houseentrance && this.houseentrance < this.position + dice) {
+            int stepsintohouse = this.houseentrance + 1 - this.position;
+            this.position = dice - stepsintohouse + this.firsthouse;
+
         }
+        else {
+            if (this.position + dice > 40) {
+                this.position = this.position + dice - 40;
+            }
+            else {
+                this.position = this.position + dice;
+            }
+        }
+
     }
 
-    public void move() {
+    public void putOnField() {
+        this.position = this.startpos;
+    }
 
+    public void removeFromField() {
+        this.position = 100;
     }
 }
