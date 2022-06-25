@@ -3,7 +3,7 @@ package hwr.oop.angry.game;
 public class Field {
 
     int position;
-    Field occupier;
+    Figure occupier;
 
     public Field(int position) {
         this.position = position;
@@ -16,13 +16,13 @@ public class Field {
         return true;
     }
 
-    public void setOccupier(Field occupier) {
+    public void setOccupier(Figure occupier) {
         this.occupier = occupier;
     }
 
     public void removeOccupier() { this.occupier = null; }
 
-    public Field getOccupier() { return this.occupier; }
+    public Figure getOccupier() { return this.occupier; }
 
     public int getPosition() { return this.position; }
 }
