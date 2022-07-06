@@ -69,7 +69,7 @@ public class AngryTest {
             }
             else {
                 targetFigure.removeFromField();
-                board.list.get(BlueOne.getPosition()).setOccupier(null);
+                board.list.get(BlueOne.getPosition()).removeOccupier();
                 BlueOne.moveFigure(5);
                 board.list.get(BlueOne.getPosition()).setOccupier(BlueOne);
             }
