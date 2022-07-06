@@ -48,5 +48,33 @@ public class AngryTest {
         assertThat(BlueTwo.getPosition()).isEqualTo(43);
         //System.out.println(BlueTwo.getPosition());
     }
+
+    @Test
+    void createRedBlueStrikeScenario() {
+        GameBoard board = new GameBoard();
+        Team teamred = new Team(10, 9, 44, 2);
+        Team teamblue = new Team(0 , 39, 40, 1);
+        Figure RedOne = teamred.list.get(0);
+        Figure BlueOne = teamblue.list.get(0);
+        RedOne.setPosition(15);
+        board.list.get(15).setOccupier(RedOne);
+        BlueOne.setPosition(10);
+        board.list.get(10).setOccupier(BlueOne);
+        int targetPos = BlueOne.getPosition() + 5;
+        Field targetField = board.list.get(targetPos);
+        if(targetField.isOccupied() == true) {
+            Figure targetFigure = targetField.getOccupier();
+            if(targetFigure.getTeamId() == BlueOne.getTeamId()){
+                System.out.println("Friendly Figure on Target");
+            }
+            else {
+                targetFigure.removeFromField();
+                board.list.get(BlueOne.getPosition()).setOccupier(null);
+                BlueOne.moveFigure(5);
+                board.list.get(BlueOne.getPosition()).setOccupier(BlueOne);
+            }
+        }
+        assertThat(targetField.getOccupier()).isEqualTo(BlueOne);
+    }
 }
 

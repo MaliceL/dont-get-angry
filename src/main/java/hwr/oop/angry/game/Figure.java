@@ -39,6 +39,7 @@ public class Figure {
         }
         else {
             if (this.position + dice > 40) {
+
                 this.position = this.position + dice - 40;
             }
             else {
@@ -55,4 +56,6 @@ public class Figure {
     public void removeFromField() {
         this.position = 100;
     }
+
+    public int getTeamId() { return this.teamid;}
 }
