@@ -76,5 +76,16 @@ public class AngryTest {
         }
         assertThat(targetField.getOccupier()).isEqualTo(BlueOne);
     }
+
+    @Test
+    void teamgreenWins() {
+        GameBoard board = new GameBoard();
+        Team teamgreen = new Team(20,19,48,3);
+        board.list.get(48).setOccupier(teamgreen.list.get(0));
+        board.list.get(49).setOccupier(teamgreen.list.get(1));
+        board.list.get(50).setOccupier(teamgreen.list.get(2));
+        board.list.get(51).setOccupier(teamgreen.list.get(3));
+        assertThat(board.winCondition()).isEqualTo(true);
+    }
 }
 
