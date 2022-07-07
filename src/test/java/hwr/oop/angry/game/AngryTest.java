@@ -85,7 +85,20 @@ public class AngryTest {
         board.list.get(49).setOccupier(teamgreen.list.get(1));
         board.list.get(50).setOccupier(teamgreen.list.get(2));
         board.list.get(51).setOccupier(teamgreen.list.get(3));
-        assertThat(board.winCondition()).isEqualTo(true);
+        assertThat(board.isGameOver()).isEqualTo(true);
+    }
+
+    @Test
+    void teamredFullTurn() {
+        GameBoard board = new GameBoard();
+        Team teamred = new Team(10, 9, 44, 2);
+        Dice dice = new Dice();
+        Game game = new Game(board, dice, teamred);
+        game.fullTurn();
+        assertThat(teamred.list.get(0).getPosition()).isEqualTo(15);
     }
 }
+
+
+
 

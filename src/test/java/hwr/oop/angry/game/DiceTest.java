@@ -11,8 +11,7 @@ public class DiceTest {
         Dice dice = new Dice();
         for (int i=0; i < 20; i++){
             int u=dice.roll();
-            assertThat(u).isEqualTo(2);
+            assertThat(u).isEqualTo(6);
         }
     }
-
 }
