@@ -17,10 +17,7 @@ public class Figure {
     }
 
     public boolean isOnField() {
-        if (this.position == 100) {
-            return false;
-        }
-        return true;
+        return this.position != 100;
     }
 
     public void setPosition(int position) {
@@ -35,7 +32,6 @@ public class Figure {
         if (this.position <= this.houseentrance && this.houseentrance < this.position + dice) {
             int stepsintohouse = this.houseentrance + 1 - this.position;
             this.position = dice - stepsintohouse + this.firsthouse;
-
         }
         else {
             if (this.position + dice > 40) {

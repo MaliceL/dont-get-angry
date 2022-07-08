@@ -89,13 +89,97 @@ public class AngryTest {
     }
 
     @Test
+    void teamblueWins() {
+        GameBoard board = new GameBoard();
+        Team teamblue = new Team(0 , 39, 40, 1);
+        board.list.get(40).setOccupier(teamblue.list.get(0));
+        board.list.get(41).setOccupier(teamblue.list.get(1));
+        board.list.get(42).setOccupier(teamblue.list.get(2));
+        board.list.get(43).setOccupier(teamblue.list.get(3));
+        assertThat(board.isGameOver()).isEqualTo(true);
+    }
+
+    @Test
+    void teamredWins() {
+        GameBoard board = new GameBoard();
+        Team teamred = new Team(0 , 39, 40, 1);
+        board.list.get(44).setOccupier(teamred.list.get(0));
+        board.list.get(45).setOccupier(teamred.list.get(1));
+        board.list.get(46).setOccupier(teamred.list.get(2));
+        board.list.get(47).setOccupier(teamred.list.get(3));
+        assertThat(board.isGameOver()).isEqualTo(true);
+    }
+
+    @Test
+    void teamyellowWins() {
+        GameBoard board = new GameBoard();
+        Team teamyellow = new Team(30 , 29, 52, 4);
+        board.list.get(52).setOccupier(teamyellow.list.get(0));
+        board.list.get(53).setOccupier(teamyellow.list.get(1));
+        board.list.get(54).setOccupier(teamyellow.list.get(2));
+        board.list.get(55).setOccupier(teamyellow.list.get(3));
+        assertThat(board.isGameOver()).isEqualTo(true);
+    }
+
+    @Test
     void teamredFullTurn() {
         GameBoard board = new GameBoard();
         Team teamred = new Team(10, 9, 44, 2);
-        Dice dice = new Dice();
+        Dice dice = new Dice(187);
         Game game = new Game(board, dice, teamred);
         game.fullTurn();
         assertThat(teamred.list.get(0).getPosition()).isEqualTo(15);
+    }
+
+    @Test
+    void nobodyWins() {
+        GameBoard board = new GameBoard();
+        Team teamyellow = new Team(30 , 29, 52, 4);
+        board.list.get(52).setOccupier(teamyellow.list.get(0));
+        board.list.get(53).setOccupier(teamyellow.list.get(1));
+        board.list.get(54).setOccupier(teamyellow.list.get(2));
+        board.list.get(10).setOccupier(teamyellow.list.get(3));
+        assertThat(board.isGameOver()).isEqualTo(false);
+    }
+
+    @Test
+    void figureOnField_figureIsOnField() {
+        GameBoard board = new GameBoard();
+        Team teamyellow = new Team(30, 29, 52, 4);
+        Dice dice = new Dice(null);
+        Game game = new Game(board, dice, teamyellow);
+        teamyellow.list.get(0).setPosition(10);
+        assertThat(game.figureOnField()).isEqualTo(true);
+    }
+
+    @Test
+    void roll_numbersMatchSeed(){
+        Dice dice = new Dice(187);
+        for (int i=0; i < 20; i++){
+            int u=dice.roll();
+            assertThat(u).isEqualTo(6);
+        }
+    }
+
+    @Test
+    void roll_randomNumbersAreBetween1And6(){
+        Dice dice = new Dice(null);
+        for (int i=0; i < 10; i++){
+            int u=dice.roll();
+            assertThat(u).isBetween(1,6);
+        }
+    }
+
+    @Test
+    void rollUntilSixMaxThree_returnsTrue() {
+        Dice dice = new Dice(187);
+        assertThat(dice.rollUntilSixMaxThree()).isEqualTo(true);
+    }
+
+    @Test
+    void rollUntilSixMaxThree_returnsFalse() {
+        Dice dice = new Dice(1337);
+        assertThat(dice.rollUntilSixMaxThree()).isEqualTo(false);
     }
 }
 

@@ -4,9 +4,23 @@ import java.util.Random;
 
 public class Dice {
 
+    Integer seed;
+
+    public Dice (Integer seed){
+        this.seed = seed;
+    }
+
+
+
+
     public int roll(){
-        Random random = new Random(187); //seed required for tests, remove for play
-        return (random.nextInt(6)+1) ;
+        if (seed == null) {
+            Random random = new Random();
+            return (random.nextInt(6)+1) ;
+        } else {
+            Random random = new Random(seed);
+            return (random.nextInt(6) + 1);
+        }
     }
 
     public boolean rollUntilSixMaxThree(){
